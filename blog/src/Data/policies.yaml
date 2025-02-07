@@ -1,0 +1,41 @@
+policies:
+  Post:
+    view:
+      policyId: P001
+      resource: Post
+      action: view
+      effect: allow
+      conditions: '(resource.tag != "exclusive") || (resource.tag == "exclusive" && user.role == "premium user")'
+    edit:
+      policyId: P002
+      resource: Post
+      action: edit
+      effect: allow
+      conditions: 'resource.ownerId == user.id'
+    publish:
+      policyId: P003
+      resource: Post
+      action: publish
+      effect: allow
+      conditions: 'user.role == "publisher" && resource.category in ["Tech", "Lifestyle"] && resource.status == "approved" && system.time >= "09:00:00" && system.time <= "18:00:00"'
+
+  Comment:
+    create:
+      policyId: C001
+      resource: Comment
+      action: create
+      effect: deny
+      conditions: 'user.role == "guest"'
+    edit:
+      policyId: C002
+      resource: Comment
+      action: edit
+      effect: allow
+      conditions: 'resource.authorId == user.id'
+    delete:
+      policyId: C003
+      resource: Comment
+      action: delete
+      effect: allow
+      conditions: 'resource.authorId == user.id || user.role in ["moderator", "admin"]'
+  # other policies
