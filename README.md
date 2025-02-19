@@ -1,3 +1,6 @@
+# ABAC Workflow Frontend
+![ABAC Workflow Implementation Frontend](/public/images/workflow.jpg)
+
 # Attribute-Based Access Control (ABAC) Implementation
 
 ## Table of Contents
